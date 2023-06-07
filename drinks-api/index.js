@@ -1,7 +1,9 @@
 import express from 'express'
 import cors from 'cors'
 import bodyParser from 'body-parser'
+import morgan from 'morgan'
 import './database/config.js'
+import router from './routes/product.js'
 
 // Configuracion del servidor Express
 const app = express()
@@ -12,8 +14,10 @@ app.use(bodyParser.json())
 app.use(express.static('public'))
 
 // Middlewares
+app.use(morgan('dev'))
 
 // Rutas
+app.use('/api', router)
 
 // Manejo de errores
 
