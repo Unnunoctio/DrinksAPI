@@ -8,18 +8,35 @@ const getProducts = async (req, res = response) => {
     const skip = (page - 1) * limit
 
     const products = await Product.find().skip(skip).limit(limit)
-    if (products.length === 0) {
-      return res.status(400).json({
-        error: 'Error al obtener los productos'
-      })
-    }
 
     res.status(200).json({
       products
     })
   } catch (error) {
-    res.status(500).json({
+    res.status(400).json({
       error: 'Error al obtener los productos'
+    })
+  }
+}
+
+const getProduct = async (req, res = response) => {
+  try {
+    const { alcoholic_grade: alcoholicGrade, content, ...rest } = req.query
+    const query = {
+      ...rest
+    }
+    if (alcoholicGrade) query.alcoholic_grade = parseFloat(alcoholicGrade)
+    if (content) query.content = parseInt(content)
+
+    const products = await Product.find(query)
+
+    res.status(200).json({
+      products
+    })
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({
+      error: 'Error al obtener el producto'
     })
   }
 }
@@ -49,5 +66,6 @@ const createProduct = async (req, res = response) => {
 
 export {
   getProducts,
+  getProduct,
   createProduct
 }
