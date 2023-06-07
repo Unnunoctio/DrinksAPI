@@ -1,11 +1,14 @@
 import { Router } from 'express'
-import { getProducts } from '../controllers/product.js'
+import { verifyApiKey } from '../middlewares/apiKey.js'
+import { createProduct, getProducts } from '../controllers/product.js'
 
 const router = Router()
 
 router.get('/drinks', getProducts)
 
-router.post('/drinks')
+router.get('/drinks/drink')
+
+router.post('/drinks', verifyApiKey, createProduct)
 
 router.put('/drinks/:id')
 

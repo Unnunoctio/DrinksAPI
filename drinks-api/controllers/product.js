@@ -8,6 +8,12 @@ const getProducts = async (req, res = response) => {
     const skip = (page - 1) * limit
 
     const products = await Product.find().skip(skip).limit(limit)
+    if (products.length === 0) {
+      return res.status(400).json({
+        error: 'Error al obtener los productos'
+      })
+    }
+
     res.status(200).json({
       products
     })
@@ -18,6 +24,30 @@ const getProducts = async (req, res = response) => {
   }
 }
 
+const createProduct = async (req, res = response) => {
+  try {
+    const { alcoholicGrade, subCategory, madeIn, ...rest } = req.body
+
+    const product = new Product({
+      ...rest,
+      alcoholic_grade: alcoholicGrade,
+      sub_category: subCategory,
+      made_in: madeIn
+    })
+
+    await product.save()
+    res.status(201).json({
+      product
+    })
+  } catch (error) {
+    res.status(400).json({
+      error: 'Error al crear un producto',
+      details: error.message
+    })
+  }
+}
+
 export {
-  getProducts
+  getProducts,
+  createProduct
 }
