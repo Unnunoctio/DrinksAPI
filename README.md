@@ -9,22 +9,21 @@ Para acceder a la API y realizar operaciones protegidas, se requiere proporciona
 ## Instalación
 
 ### 1. Clona este repositorio:
-  
-  git clone https://github.com/Unnunoctio/DrinksAPI.git
+    git clone https://github.com/Unnunoctio/DrinksAPI.git
 
 ### 2. Instala las dependencias:
   
-  npm install
+    npm install
 
-### 3. Crea un archivo `.env` en la carpeta raíz del proyecto y define las variables de entorno `PORT`, `DB_CNN` y `API_KEY`
+### 3. Crea un archivo `.env` en la carpeta raíz del proyecto y define las variables de entorno: `PORT`, `DB_CNN` y `API_KEY`
 
-  PORT=3000
-  DB_CNN=URI_DATABASE
-  API_KEY=tu_api_key
+    PORT=3000
+    DB_CNN=URI_DATABASE
+    API_KEY=tu_api_key
 
 ### 4. Inicia el servidor:
 
-  npm start
+    npm start
 
 ## Endpoints
   
