@@ -25,9 +25,11 @@ Para acceder a la API y realizar operaciones protegidas, se requiere proporciona
 
     npm start
 
-## Endpoints
+# Endpoints
+
+## Obtener todas las bebidas alcohólicas
   
-### GET /drinks
+`GET /drinks`
 
 Este endpoint permite obtener todas las bebidas registradas en la base de datos.
 
@@ -35,9 +37,11 @@ Parámetros de consulta opcionales:
 - `page`: Número de página para paginar los resultados (valor por defecto: 1).
 - `limit`: Número máximo de resultados por página (valor por defecto: 10).
   
-### GET /drinks/drink
+## Obtener bebidas alcohólicas mediante parametros
 
-  Este endpoint permite filtrar por medio de los parametros internos de las bebidas alcoholicas.
+`GET /drinks/drink`
+
+  Este endpoint permite filtrar por medio de los parametros internos de las bebidas alcohólicas.
 
   Parámetros de consulta:
   - `name`: Nombre de la bebida alcohólica.
@@ -53,7 +57,9 @@ Parámetros de consulta opcionales:
   - `strain`: En caso de ser un tipo `Vinos` es la cepa del vino (ej: Merlot, Carmenere, Syrah, etc).
   - `vineyard`: En caso de ser un tipo `Vinos` es la viña a la cual corresponde.
 
-### POST /drinks
+## Crear una bebida alcohólica
+
+`POST /drinks`
 
   Este endpoint permite crear una nueva bebida alcoholica.
 
@@ -71,4 +77,11 @@ Parámetros de consulta opcionales:
     "variety": "Ale",
     "bitternes": "25 IBU"
   }
+  ```
+
+## Agregar un excel con bebidas alcohólicas
+
+`POST /drinks/excel`
+
+  Este endpoint permite enviar un excel con datos agregados, de modo que se inserten varias bebidas alcohólicas de manera simultánea.
 
