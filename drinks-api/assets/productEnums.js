@@ -12,7 +12,7 @@ const varietyEnum = ['Ale', 'Lager', 'Stout', 'Trigo']
 
 const strainEnum = [
   'Cabernet Sauvignon', 'Pinot Noir', 'Merlot', 'Syrah', 'Carmenere', 'Malbec',
-  'Sauvignon Blanc', 'Chardonnay', 'Chardonnay', 'Pinot Grigio', 'Pinot Gris', 'Albariño', 'Moscato', 'Moscatel', 'Verdejo', 'Riesling', 'Semillón', 'Gewürztraminer',
+  'Sauvignon Blanc', 'Chardonnay', 'Pinot Grigio', 'Pinot Gris', 'Albariño', 'Moscato', 'Moscatel', 'Verdejo', 'Riesling', 'Semillón', 'Gewürztraminer',
   'Pinot Noir', 'Garnacha', 'Tempranillo', 'Sangiovese', 'Zinfandel'
 ]
 

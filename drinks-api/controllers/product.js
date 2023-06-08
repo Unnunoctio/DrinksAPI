@@ -87,12 +87,9 @@ const addManyProducts = async (req, res = response) => {
         content: parseInt(content),
         package: packageData
       })
-      if (existingProduct) continue
-      if (!packageEnum.includes(packageData)) continue
-      if (!categoryEnum.includes(category)) continue
-      if (!subCategory.includes(subCategory)) continue
-      if (variety && !varietyEnum.includes(variety)) continue
-      if (strain && !strainEnum.includes(strain)) continue
+      if (existingProduct || !packageEnum.includes(packageData) || !categoryEnum.includes(category) || !subCategory.includes(subCategory) || (variety && !varietyEnum.includes(variety)) || (strain && !strainEnum.includes(strain))) {
+        continue
+      }
 
       const product = {
         name,
@@ -113,13 +110,19 @@ const addManyProducts = async (req, res = response) => {
     }
 
     const productsDB = await Product.insertMany(data)
+    // const productsDB = await Product.bulkWrite(data.map(product => ({
+    //   insertOne: {
+    //     document: product
+    //   }
+    // })))
 
     res.status(200).json({
       products: productsDB
     })
   } catch (error) {
     res.status(400).json({
-      error: 'Error al agregar los datos'
+      error: 'Error al agregar los datos',
+      details: error.message
     })
   }
 }
