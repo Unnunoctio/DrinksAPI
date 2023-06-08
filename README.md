@@ -84,4 +84,42 @@ Parámetros de consulta opcionales:
 `POST /drinks/excel`
 
   Este endpoint permite enviar un excel con datos agregados, de modo que se inserten varias bebidas alcohólicas de manera simultánea.
+  
+## Modificar una bebida alcoholica
 
+`PUT /drinks/:id`
+
+  Este endpoint permite modificar una bebida alcoholica existente mediante su identificador.
+  
+  Cuerpo de la solicitud (en formato JSON):
+  ```json
+  {
+    "name": "Nuevo Nombre",
+    "content": 500
+  }
+  ```
+  
+## Eliminar una bebida alcoholica
+
+`DELETE /drinks/:id`
+
+  Este endpoint permite eliminar una bebida alcoholica existente mediante su identificador.
+  
+# Errores
+
+  La API devuelve los siguentes codigos de estado y mensajes de error en caso de problemas:
+  - 400 Bad Request: Error en la solicitud o datos no validos.
+  - 401 Unauthorized: Falta o clave de API incorrecta.
+  - 404 Not Found: La Bebida alcoholica no existe.
+  - 500 Internal Server Error: Error interno del servidor.
+
+# Tecnologias utilizadas
+  
+  - Node.js
+  - Express.js
+  - MongoDB
+  - Mongoose
+
+# Contribuciones
+
+  Las contribuciones son bienvenidas. Si deseas mejorar este proyecto, no dudes en crear un pull request.
