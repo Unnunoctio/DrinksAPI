@@ -35,7 +35,7 @@ const getProduct = async (req, res = response) => {
     })
   } catch (error) {
     console.log(error)
-    res.status(500).json({
+    res.status(400).json({
       error: 'Error al obtener el producto'
     })
   }
@@ -64,8 +64,38 @@ const createProduct = async (req, res = response) => {
   }
 }
 
+const modifyProduct = async (req, res = response) => {
+  try {
+    const { alcoholicGrade, subCategory, madeIn, ...rest } = req.body
+
+    const product = {
+      ...rest,
+      alcoholic_grade: alcoholicGrade,
+      sub_category: subCategory,
+      made_in: madeIn
+    }
+
+    const productDB = await Product.findByIdAndUpdate(req.params.id, product, { new: true })
+    if (!productDB) {
+      return res.status(404).json({
+        error: 'Producto no encontrado'
+      })
+    }
+
+    res.status(200).json({
+      product: productDB
+    })
+  } catch (error) {
+    res.status(400).json({
+      error: 'Error al actualizar el producto',
+      details: error.message
+    })
+  }
+}
+
 export {
   getProducts,
   getProduct,
-  createProduct
+  createProduct,
+  modifyProduct
 }

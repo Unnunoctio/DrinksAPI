@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import { verifyApiKey } from '../middlewares/apiKey.js'
-import { createProduct, getProduct, getProducts } from '../controllers/product.js'
+import { verifyEnums } from '../middlewares/product.js'
+import { createProduct, getProduct, getProducts, modifyProduct } from '../controllers/product.js'
 
 const router = Router()
 
@@ -10,7 +11,7 @@ router.get('/drinks/drink', getProduct)
 
 router.post('/drinks', verifyApiKey, createProduct)
 
-router.put('/drinks/:id')
+router.put('/drinks/:id', [verifyApiKey, verifyEnums], modifyProduct)
 
 router.delete('/drinks/:id')
 
