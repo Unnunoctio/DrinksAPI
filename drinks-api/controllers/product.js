@@ -93,9 +93,30 @@ const modifyProduct = async (req, res = response) => {
   }
 }
 
+const deleteProduct = async (req, res = response) => {
+  try {
+    const product = await Product.findByIdAndDelete(req.params.id)
+    if (!product) {
+      return res.status(404).json({
+        error: 'Producto no encontrado'
+      })
+    }
+
+    res.status(200).json({
+      product
+    })
+  } catch (error) {
+    res.status(400).json({
+      error: 'Error al eliminar el producto',
+      details: error.message
+    })
+  }
+}
+
 export {
   getProducts,
   getProduct,
   createProduct,
-  modifyProduct
+  modifyProduct,
+  deleteProduct
 }
